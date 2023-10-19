@@ -48,6 +48,8 @@ class Aluno (Pessoa):
     self.genero = input('Qual o seu gênero, masculino ou feminino?')
     
     if self.genero == 'feminino':
+
+      
       if linesFeminino < 6:
         self.matricula = input('Digite sua matrícula:')
         if self.matricula in info_2_M:
@@ -55,7 +57,7 @@ class Aluno (Pessoa):
           string = str(nome1)
           nome2 = string.replace("{", "").replace("}", "")
           self.nome = nome2.replace('"', '').replace("'", '')
-          if self.turma=='2':
+          if self.turma=='2 info matutino':
                     
             self.nome = repr(self.nome)
             self.nome = self.nome.replace("'", "")
@@ -77,12 +79,40 @@ class Aluno (Pessoa):
           else:
             print('turma x')
                 
-        else:
-            print('invalido')  
-           
+        elif self.matricula in info_2_V:
+          nome1 = info_2_V[self.matricula]
+          string = str(nome1)
+          nome2 = string.replace("{", "").replace("}", "")
+          self.nome = nome2.replace('"', '').replace("'", '')
+          if self.turma=='2 info vespertino':
+                    
+            self.nome = repr(self.nome)
+            self.nome = self.nome.replace("'", "")
+            with open("listafeminino_info_2_vesp.txt","a") as file:
+              file.write("1\n")
+            with open("participantes_feminino_2_info_vesp.txt", "a") as file:
+              file.write(self.nome + ", "+ self.matricula + "\n")
+              print('Seu nome é:', self.nome)
+            with open("participantes_feminino_2_info_vesp.txt", "r") as arquivo:
+                        # Lê cada linha do arquivo
+              for linha in arquivo:
+                self.nome = linha.strip()  # Remove espaços em branco extras
+                listaParticipantes.append(self.nome)  # Adiciona o nome à lista "nomes"
+            print("Você foi adicionado a lista de participantes", self.genero)
+
+                    
+  
+  
+          else:
+            print('turma x')
+             
+
+          
         
          
     elif self.genero == 'masculino':
+
+
       if linesMasculino < 6:
           self.matricula = input('Digite sua matrícula:')
           if self.matricula in info_2_M:
@@ -91,7 +121,7 @@ class Aluno (Pessoa):
             nome2 = string.replace("{", "").replace("}", "")
             self.nome = nome2.replace('"', '').replace("'", '')
             
-            if self.turma=='2':
+            if self.turma=='2 info matutino':
               
                self.nome = repr(self.nome)
                self.nome = self.nome.replace("'", "")
