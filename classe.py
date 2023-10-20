@@ -20,171 +20,64 @@ class Pessoa:
       
     return usuario
       
-class Aluno (Pessoa):
+class Aluno(Pessoa):
+    def __init__(self, nome, matricula, turma, genero):
+        super().__init__(nome, matricula)
+        self.turma = turma
+        self.genero = genero
 
-  def __init__(self, nome, matricula, turma, genero):
-    super().__init__(nome, matricula)
-    self.turma = None
-    self.genero = None
+    def inscricao(self):
+        listaParticipantes = []
 
-  def inscricao(self):
-    listaParticipantes = []
-    with open(r"lista_feminino.txt", 'r') as fp:
-        linesFeminino = len(fp.readlines()) 
-    with open(r"lista_feminino.txt", 'r') as fp:
-        linesMasculino = len(fp.readlines()) 
-    with open(r"lista_feminino.txt", 'r') as fp:
-        lines = len(fp.readlines()) 
-    
-    with open(r"lista_feminino.txt", 'r') as fp:
-      linesFeminino = len(fp.readlines())
-    with open(r"lista_masculino.txt", 'r') as fp:
-      linesMasculino = len(fp.readlines())
-    with open(r"lista.txt", 'r') as fp:
-      lines = len(fp.readlines())
-
-    with open(r"listafeminino_info_2_vesp.txt", 'r') as fp:
-      linesFeminino_2_info_V = len(fp.readlines())
-    with open(r"lista_masculino_2_info_V.txt", 'r') as fp:
-      linesMasculino_2_info_V = len(fp.readlines())
-   
-    self.turma = input('Digite sua turma:')
-    #GRAZI
-    self.genero = input('Qual o seu gênero, masculino ou feminino?')
-    
-    if self.genero == 'feminino':
-
-      
-      if linesFeminino  < 6 and self.turma == "2 info matutino":
-        self.matricula = input('Digite sua matrícula:')
-        if self.matricula in info_2_M:
-          nome1 = info_2_M[self.matricula]
-          string = str(nome1)
-          nome2 = string.replace("{", "").replace("}", "")
-          self.nome = nome2.replace('"', '').replace("'", '')
-          if self.turma=='2 info matutino':
-                    
-            self.nome = repr(self.nome)
-            self.nome = self.nome.replace("'", "")
-            with open("lista_feminino.txt","a") as file:
-              file.write("1\n")
-            with open("participantes_feminino.txt", "a") as file:
-              file.write(self.nome + ", "+ self.matricula + "\n")
-              print('Seu nome é:', self.nome)
-            with open("participantes_feminino.txt", "r") as arquivo:
-                        # Lê cada linha do arquivo
-              for linha in arquivo:
-                self.nome = linha.strip()  # Remove espaços em branco extras
-                listaParticipantes.append(self.nome)  # Adiciona o nome à lista "nomes"
-            print("Você foi adicionado a lista de participantes", self.genero)
-
-                    
-  
-  
-          else:
-            print('turma x')
-                
-      elif linesFeminino_2_info_V < 6 and self.turma == "2 info vespertino":
-        self.matricula = input('Digite sua matrícula:')
-        if self.matricula in info_2_V:
-          nome1 = info_2_V[self.matricula]
-          string = str(nome1)
-          nome2 = string.replace("{", "").replace("}", "")
-          self.nome = nome2.replace('"', '').replace("'", '')
-          if self.turma=='2 info vespertino':
-                    
-            self.nome = repr(self.nome)
-            self.nome = self.nome.replace("'", "")
-            with open("listafeminino_info_2_vesp.txt","a") as file:
-              file.write("1\n")
-            with open("participantes_feminino_2_info_vesp.txt", "a") as file:
-              file.write(self.nome + ", "+ self.matricula + "\n")
-              print('Seu nome é:', self.nome)
-            with open("participantes_feminino_2_info_vesp.txt", "r") as arquivo:
-                        # Lê cada linha do arquivo
-              for linha in arquivo:
-                self.nome = linha.strip()  # Remove espaços em branco extras
-                listaParticipantes.append(self.nome)  # Adiciona o nome à lista "nomes"
-            print("Você foi adicionado a lista de participantes", self.genero)
-
-                    
-  
-  
-          else:
-            print('turma x')
-             
-      
-          
-        
-         
-    elif self.genero == 'masculino':
-
-
-      if linesMasculino_2_info_V < 6 and self.turma == "2 info vespertino":
-          self.matricula = input('Digite sua matrícula:')
-          if self.matricula in info_2_V:
-            nome1 = info_2_V[self.matricula]
-            string = str(nome1)
-            nome2 = string.replace("{", "").replace("}", "")
-            self.nome = nome2.replace('"', '').replace("'", '')
+        turma_dict = {
+            ("feminino", "2 info matutino"): ("lista_feminino.txt", "info_2_M", "participantes_feminino.txt"),
+            ("feminino", "2 info vespertino"): ("listafeminino_info_2_vesp.txt", "info_2_V", "participantes_feminino_2_info_vesp.txt"),
+            ("feminino", "3 info matutino"): ("listafeminino_info_3_M.txt", "info_3_M", "participantes_feminino_3_info_M.txt"),
+            ("feminino", "3 info vespertino"): ("lista_feminino_3_info_V.txt", "info_3_V", "participantes_feminino_3_info_V.txt"),
+            ("masculino", "2 info vespertino"): ("lista_masculino_2_info_V.txt", "info_2_V", "participantes_masculino_2_info_V.txt"),
+            ("masculino", "2 info matutino"): ("lista_masculino.txt", "info_2_M", "participantes_masculino.txt"),
+            ("masculino", "3 info matutino"): ("lista_masculino_3_info_M.txt", "info_3_M", "participantes_masculino_3_info_M.txt"),
+            ("masculino", "3 info vespertino"): ("lista_masculino_3_info_V.txt", "info_3_V", "participantes_masculino_3_info_V.txt")
             
-            if self.turma=='2 info vespertino':
-              
-               self.nome = repr(self.nome)
-               self.nome = self.nome.replace("'", "")
-               with open("lista_masculino_2_info_V.txt","a") as file:
-                 file.write("1\n")
-               with open("participantes_masculino_2_info_V.txt", "a") as file:
-                 file.write(self.nome + ", "+ self.matricula + "\n")
-               print('Seu nome é:', self.nome)
-               with open("participantes_masculino_2_info_V.txt", "r") as arquivo:
-                # Lê cada linha do arquivo
-                for linha in arquivo:
-                  self.nome = linha.strip()  # Remove espaços em branco extras
-                  listaParticipantes.append(self.nome)  # Adiciona o nome à lista "nomes"
-               print("Você foi adicionado a lista de participantes", self.genero)
-                      
-  
+        }
+
+        genero = self.genero.lower()
+        turma = self.turma.lower()
+
+        if (genero, turma) in turma_dict:
+            lista_file, info_file, participantes_file = turma_dict[(genero, turma)]
+
+            with open(lista_file, 'r') as fp:
+                lines = len(fp.readlines())
+
+            self.matricula = input('Digite sua matrícula:')
+            if self.matricula in globals()[info_file]:
+                nome1 = globals()[info_file][self.matricula]
+                nome2 = str(nome1).replace("{", "").replace("}", "")
+                self.nome = nome2.replace('"', '').replace("'", '')
+
+                if self.turma == turma:
+                    self.nome = repr(self.nome).replace("'", "")
+                    with open(lista_file, "a") as file:
+                        file.write("1\n")
+                    with open(participantes_file, "a") as file:
+                        file.write(self.nome + ", " + self.matricula + "\n")
+                    print('Seu nome é:', self.nome)
+
+                    with open(participantes_file, "r") as arquivo:
+                        for linha in arquivo:
+                            self.nome = linha.strip()
+                            listaParticipantes.append(self.nome)
+                    print("Você foi adicionado à lista de participantes", self.genero)
+                else:
+                    print('Turma inválida')
             else:
-             print('turma x')
-                
-          else:
-             print('invalido')  
+                print('Matrícula inválida')
+        else:
+            print('Combinação de gênero e turma não suportada')
 
-      elif linesMasculino < 6:
-          self.matricula = input('Digite sua matrícula:')
-          if self.matricula in info_2_M:
-            nome1 = info_2_M[self.matricula]
-            string = str(nome1)
-            nome2 = string.replace("{", "").replace("}", "")
-            self.nome = nome2.replace('"', '').replace("'", '')
-            
-            if self.turma=='2 info matutino':
-              
-               self.nome = repr(self.nome)
-               self.nome = self.nome.replace("'", "")
-               with open("lista_masculino.txt","a") as file:
-                 file.write("1\n")
-               with open("participantes_masculino.txt", "a") as file:
-                 file.write(self.nome + ", "+ self.matricula + "\n")
-               print('Seu nome é:', self.nome)
-               with open("participantes_masculino.txt", "r") as arquivo:
-                # Lê cada linha do arquivo
-                for linha in arquivo:
-                  self.nome = linha.strip()  # Remove espaços em branco extras
-                  listaParticipantes.append(self.nome)  # Adiciona o nome à lista "nomes"
-               print("Você foi adicionado a lista de participantes", self.genero)
-                      
+
   
-            else:
-             print('turma x')
-                
-          else:
-             print('invalido')  
-
-
-    if lines > 5 :
-      print("Limite de participantes atingido")
     
     #grazi
   
