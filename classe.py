@@ -29,6 +29,9 @@ class Aluno(Pessoa):
     def inscricao(self):
         listaParticipantes = []
 
+        self.genero = input('Qual o seu gênero, masculino ou feminino?').lower()
+        self.turma = input('Digite sua turma:').lower()
+
         turma_dict = {
             ("feminino", "2 info matutino"): ("lista_feminino.txt", "info_2_M", "participantes_feminino.txt"),
             ("feminino", "2 info vespertino"): ("listafeminino_info_2_vesp.txt", "info_2_V", "participantes_feminino_2_info_vesp.txt"),
@@ -41,8 +44,8 @@ class Aluno(Pessoa):
             
         }
 
-        genero = self.genero.lower()
-        turma = self.turma.lower()
+        genero = self.genero
+        turma = self.turma
 
         if (genero, turma) in turma_dict:
             lista_file, info_file, participantes_file = turma_dict[(genero, turma)]
