@@ -37,10 +37,27 @@ class Aluno(Pessoa):
             ("feminino", "2 info vespertino"): ("listafeminino_info_2_vesp.txt", "info_2_V", "participantes_feminino_2_info_vesp.txt"),
             ("feminino", "3 info matutino"): ("listafeminino_info_3_M.txt", "info_3_M", "participantes_feminino_3_info_M.txt"),
             ("feminino", "3 info vespertino"): ("lista_feminino_3_info_V.txt", "info_3_V", "participantes_feminino_3_info_V.txt"),
+            ("feminino", "1 info a"): ("lista_feminino_1_info_A.txt", "info_1_A", "participantes_feminino_1_info_A.txt"),
+            ("feminino", "1 info b"): ("lista_feminino_1_info_B.txt", "info_1_B", "participantes_feminino_1_info_B.txt"),
+            ("feminino", "1 edifica a"): ("lista_feminino_1_edifica_A.txt", "edif_1_A", "participantes_feminino_1_edifica_A.txt"),
+            ("feminino", "1 edifica a"): ("lista_feminino_1_edifica_B.txt", "edif_1_B", "participantes_feminino_1_edifica_B.txt"),
+            ("feminino", "2 edifica matutino"): ("lista_feminino_2 edifica_M.txt", "edif_2_M", "particpantes_feminino_2_edifica_M.txt"),
+            ("feminino", "2 edifica vespertino"): ("lista_feminino_2_edifica_V.txt", "edfi_2_V", "participantes_feminino_2_edfiica_V.txt"),
+            ("feminino", "3 edifica matutino"): ("lista_feminino_3_edifica_M.txt", "edif_3_M", "participantes_feminino_3_edifica_M.txt"),
+            ("feminino", "3 edifica vespertino"): ("lista_feminino_3_edifica_V.txt", "edif_3_V", "participantes_feminino_3_edifica_V.txt"),
             ("masculino", "2 info vespertino"): ("lista_masculino_2_info_V.txt", "info_2_V", "participantes_masculino_2_info_V.txt"),
             ("masculino", "2 info matutino"): ("lista_masculino.txt", "info_2_M", "participantes_masculino.txt"),
             ("masculino", "3 info matutino"): ("lista_masculino_3_info_M.txt", "info_3_M", "participantes_masculino_3_info_M.txt"),
-            ("masculino", "3 info vespertino"): ("lista_masculino_3_info_V.txt", "info_3_V", "participantes_masculino_3_info_V.txt")
+            ("masculino", "3 info vespertino"): ("lista_masculino_3_info_V.txt", "info_3_V", "participantes_masculino_3_info_V.txt"),
+            ("masculino", "1 info a"): ("lista_masculino_1_info_A.txt", "info_1_A", "participantes_masculino_1_info_A.txt"),
+            ("masculino", "1 info b"): ("lista_masculino_1_info_B.txt", "info_1_B", "participantes_masculino_1_info_B.txt"),
+            ("masculino", "1 edifica a"):("lista_masculino_1_edifica_A.txt", "edif_1_A", "participantes_masculino_1_edifica_A.txt"),
+            ("masculino", "1 edifica b"): ("lista_masculino_1_edifica_B.txt", "edif_1_B", "participantes_masculino_1_edifica_B.txt"),
+            ("masculino", "2 edifica matutino"): ("lista_masculino_2_edifica_M.txt", "edif_2_M", "participantes_masculino_2_edifica_M.txt"),
+            ("masculino", "2 edifica vespertino"): ("lista_masculino_2_edifica_V.txt", "edfi_2_V", "participantes_masculino_2_edifica_V.txt"),
+            ("masculino", "3 edifica matutino"): ("lista_masculino_3_edifica_M.txt", "edif_3_M", "participantes_masculino_3_edifica_M.txt"),
+            ("masculino", "3 edifica vespertino"): ("lista_masculino_3_edifica_V.txt", "edif_3_V", "participantes_masculino_3_edifica_V.txt")
+
             
         }
 
