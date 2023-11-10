@@ -175,7 +175,7 @@ class Professor(Pessoa):
           for linha in arquivo:
             nome = linha.strip()  # Remove espaços em branco extras
             nomes_masculinos.append(nome)  # Adiciona o nome à lista "nomes"
-            print(nomes_masculinos)
+          print(nomes_masculinos)
 
       elif mas_or_fem.upper() == "FEMININO":
         nomes_femininos = []
@@ -184,7 +184,7 @@ class Professor(Pessoa):
           for linha in arquivo:
             nome = linha.strip()  # Remove espaços em branco extras
             nomes_femininos.append(nome)  # Adiciona o nome à lista "nomes"
-            print(*nomes_femininos, sep=", ")
+          print(*nomes_femininos, sep=", ")
 
     else:
       print('essa turma não esta cadastrada.')
