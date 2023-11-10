@@ -220,4 +220,4 @@ quim_3_V = {
     '2023106060115': 'Aluno 20-5',
 }
 
-ListaLider = {'2022106060050' : 'Erick Batista dos Santos'}
+ListaLider = {'2023106060091': 'Ana Luisa Esteves de Oliveira'}
