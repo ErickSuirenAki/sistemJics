@@ -29,6 +29,11 @@ elif usuario.upper() == 'LIDER': #caso seja lider, invocamos o metodo de inscri�
 elif usuario.upper() =='PROFESSOR': #caso seja professor  invocamos o metodo de exibir informações do professor
   exibirProfessor = Professor(None,None)
   exibirProfessor.exibirProfessor()
+  editarturma = input("Vocde seja editar alguma turma: ")
+  if editarturma == 'sim':
+    escolha = input("Voce deseja adcionar algum aluno?")
+    if escolha == "sim":
+      exibirProfessor.adicionar_aluno()
 
 else: 
   print('')
