@@ -261,11 +261,11 @@ class Professor(Pessoa):
           
           ver_inscricoes = input()
           if ver_inscricoes.isdigit() and 1 <= int(ver_inscricoes) <= len(lista_turmas):
-              # Removendo espaços extras ao redor do nome da turma
+              
               turma_selecionada = lista_turmas[int(ver_inscricoes) - 1]
               mas_or_fem = input('Masculino ou Feminino?')
 
-              # Corrigindo a verificação da turma
+              
               turma_key = (mas_or_fem.lower(), turma_selecionada.lower())
 
               if turma_key in turmas_dict:
