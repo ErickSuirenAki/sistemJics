@@ -158,36 +158,134 @@ class Lider(Aluno):
     else: print("Você não é um líder de turma.")
 
 class Professor(Pessoa):
-  def __init__(self, nome, matricula):
-   super().__init__( nome, matricula)
+    def __init__(self, nome, matricula):
+        super().__init__(nome, matricula)
 
-  def exibirProfessor(self):
-    print('Você deseja ver o andamento das inscrições de qual turma?')
-    lista= ['''1- 2º INFORMÁTICA MATUTINO''']
-    print(' '.join(lista))
-    ver_inscricoes = input()
-    if ver_inscricoes == '1':
-      mas_or_fem = input('Masculino ou Feminino?')
-      if mas_or_fem.upper() == 'MASCULINO':
-        nomes_masculinos = []
-        with open("participantes_masculino.txt", "r") as arquivo:
-        # Lê cada linha do arquivo
-          for linha in arquivo:
-            nome = linha.strip()  # Remove espaços em branco extras
-            nomes_masculinos.append(nome)  # Adiciona o nome à lista "nomes"
-          print(nomes_masculinos)
+    def exibirProfessor(self):
+        print('Você deseja ver o andamento das inscrições de todas as turmas ou escolher uma turma específica? (TODAS/ESPECIFICA)')
+        escolha = input().upper()
 
-      elif mas_or_fem.upper() == "FEMININO":
-        nomes_femininos = []
-        with open("participantes_feminino.txt", "r") as arquivo:
-        # Lê cada linha do arquivo
-          for linha in arquivo:
-            nome = linha.strip()  # Remove espaços em branco extras
-            nomes_femininos.append(nome)  # Adiciona o nome à lista "nomes"
-          print(*nomes_femininos, sep=", ")
+        turmas_dict = {
+                ("masculino", "2 info matutino"): ("participantes_masculino.txt", "info_2_M"),
+                ("masculino", "2 info vespertino"): ("participantes_masculino_2_info_V.txt", "info_2_V"),
+                ("masculino", "3 info matutino"): ("participantes_masculino_3_info_M.txt", "info_3_M"),
+                ("masculino", "3 info vespertino"): ("participantes_masculino_3_info_V.txt", "info_3_V"),
+                ("masculino", "1 info a"): ("participantes_masculino_1_info_A.txt", "info_1_A"),
+                ("masculino", "1 info b"): ("participantes_masculino_1_info_B.txt", "info_1_B"),
+                ("masculino", "1 edifica a"): ("participantes_masculino_1_edifica_A.txt", "edif_1_A"),
+                ("masculino", "1 edifica b"): ("participantes_masculino_1_edifica_B.txt", "edif_1_B"),
+                ("masculino", "2 edifica matutino"): ("participantes_masculino_2_edifica_M.txt", "edif_2_M"),
+                ("masculino", "2 edifica vespertino"): ("participantes_masculino_2_edifica_V.txt", "edfi_2_V"),
+                ("masculino", "3 edifica matutino"): ("participantes_masculino_3_edifica_M.txt", "edif_3_M"),
+                ("masculino", "3 edifica vespertino"): ("participantes_masculino_3_edifica_V.txt", "edif_3_V"),
+                ("masculino", "1 quimica a"): ("participantes_masculino_1_quim_A.txt", "quim_1_A"),
+                ("masculino", "1 quimica b"): ("participantes_masculino_1_quim_B.txt", "quim_1_B"),
+                ("masculino", "2 quimica matutino"): ("participantes_masculino_2_quim_M.txt", "quim_2_M"),
+                ("masculino", "2 quimica vespertino"): ("participantes_masculino_2_quim_V.txt", "quim_2_V"),
+                ("masculino", "3 quimica matutino"): ("participantes_masculino_3_quim_M.txt", "quim_3_M"),
+                ("masculino", "3 quimica vespertino"): ("participantes_masculino_3_quim_V.txt", "quim_3_V"),
+                ("masculino", "1 eletro a"): ("participantes_masculino_1_eletro_A.txt", "elet_1_A"),
+                ("masculino", "1 eletro b"): ("participantes_masculino_1_eletro_B.txt", "elet_1_B"),
+                ("masculino", "2 eletro matutino"): ("participantes_masculino_2_eletro_M.txt", "elet_2_M"),
+                ("masculino", "2 eletro vespertino"): ("participantes_masculino_2_eletro_V.txt", "elet_2_V"),
+                ("masculino", "3 eletro matutino"): ("participantes_masculino_3_eletro_M.txt", "elet_3_M"),
+                ("masculino", "3 eletro vespertino"): ("participantes_masculino_3_eletro_V.txt", "elet_3_V"),
 
-    else:
-      print('essa turma não esta cadastrada.')
+                ("feminino", "2 info vespertino"): ("participantes_feminino_2_info_vesp.txt", "info_2_V"),
+                ("feminino", "2 info matutino"): ("participantes_feminino.txt", "info_2_M"),
+                ("feminino", "3 info matutino"): ("participantes_feminino_3_info_M.txt", "info_3_M"),
+                ("feminino", "3 info vespertino"): ("participantes_feminino_3_info_V.txt", "info_3_V"),
+                ("feminino", "1 info a"): ("participantes_feminino_1_info_A.txt", "info_1_A"),
+                ("feminino", "1 info b"): ("participantes_feminino_1_info_B.txt", "info_1_B"),
+                ("feminino", "1 edifica a"): ("participantes_feminino_1_edifica_A.txt", "edif_1_A"),
+                ("feminino", "1 edifica b"): ("participantes_feminino_1_edifica_B.txt", "edif_1_B"),
+                ("feminino", "2 edifica matutino"): ("participantes_feminino_2_edifica_M.txt", "edif_2_M"),
+                ("feminino", "2 edifica vespertino"): ("participantes_feminino_2_edifica_V.txt", "edfi_2_V"),
+                ("feminino", "3 edifica matutino"): ("participantes_feminino_3_edifica_M.txt", "edif_3_M"),
+                ("feminino", "3 edifica vespertino"): ("participantes_feminino_3_edifica_V.txt", "edif_3_V"),
+                ("feminino", "1 quimica a"): ("participantes_feminino_1_quim_A.txt", "quim_1_A"),
+                ("feminino", "1 quimica b"): ("participantes_feminino_1_quim_B.txt", "quim_1_B"),
+                ("feminino", "2 quimica matutino"): ("participantes_feminino_2_quim_M.txt", "quim_2_M"),
+                ("feminino", "2 quimica vespertino"): ("participantes_feminino_2_quim_V.txt", "quim_2_V"),
+                ("feminino", "3 quimica matutino"): ("participantes_feminino_3_quim_M.txt", "quim_3_M"),
+                ("feminino", "3 quimica vespertino"): ("participantes_feminino_3_quim_V.txt", "quim_3_V"),
+                ("feminino", "1 eletro a"): ("participantes_feminino_1_eletro_A.txt", "elet_1_A"),
+                ("feminino", "1 eletro b"): ("participantes_feminino_1_eletro_B.txt", "elet_1_B"),
+                ("feminino", "2 eletro matutino"): ("participantes_feminino_2_eletro_M.txt", "elet_2_M"),
+                ("feminino", "2 eletro vespertino"): ("participantes_feminino_2_eletro_V.txt", "elet_2_V"),
+                ("feminino", "3 eletro matutino"): ("participantes_feminino_3_eletro_M.txt", "elet_3_M"),
+                ("feminino", "3 eletro vespertino"): ("participantes_feminino_3_eletro_V.txt", "elet_3_V"),
+        }
+
+        if escolha == 'TODAS':
+            for (genero, turma), (arquivo_participantes, info_file) in turmas_dict.items():
+                print(f'INSCRIÇÕES {genero.upper()} - {turma.upper()}')
+                nomes = []
+                with open(arquivo_participantes, "r") as arquivo_inscricoes:
+                    for linha in arquivo_inscricoes:
+                        nome = linha.strip()
+                        nomes.append(nome)
+                print(*nomes, sep=", ")
+                print('\n')
+
+        elif escolha == 'ESPECIFICA':
+          print('Você deseja ver o andamento das inscrições de qual turma?')
+    
+          # Lista de todas as turmas
+          lista_turmas = [
+              '2 info matutino',
+              '2 info vespertino',
+              '3 info matutino',
+              '3 info vespertino',
+              '1 edifica a',
+              '1 edifica b',
+              '2 edifica matutino',
+              '2 edifica vespertino',
+              '3 edifica matutino',
+              '3 edifica vespertino',
+              '1 quimica a',
+              '1 quimica b',
+              '2 quimica matutino',
+              '2 quimica vespertino',
+              '3 quimica matutino',
+              '3 quimica vespertino',
+              '1 eletro a',
+              '1 eletro b',
+              '2 eletro matutino',
+              '2 eletro vespertino',
+              '3 eletro matutino',
+              '3 eletro vespertino',
+          ]
+
+          print('\n'.join([f'{i + 1}- {turma.capitalize()}' for i, turma in enumerate(lista_turmas)]))
+          
+          ver_inscricoes = input()
+          if ver_inscricoes.isdigit() and 1 <= int(ver_inscricoes) <= len(lista_turmas):
+              # Removendo espaços extras ao redor do nome da turma
+              turma_selecionada = lista_turmas[int(ver_inscricoes) - 1]
+              mas_or_fem = input('Masculino ou Feminino?')
+
+              # Corrigindo a verificação da turma
+              turma_key = (mas_or_fem.lower(), turma_selecionada.lower())
+
+              if turma_key in turmas_dict:
+                  arquivo_participantes, _ = turmas_dict[turma_key]
+                  nomes = []
+                  with open(arquivo_participantes, "r") as arquivo_inscricoes:
+                      for linha in arquivo_inscricoes:
+                          nome = linha.strip()
+                          nomes.append(nome)
+                  print(f'INSCRIÇÕES {mas_or_fem.upper()} - {turma_selecionada.upper()}')
+                  print(*nomes, sep=", ")
+              else:
+                  print('Essa turma não está cadastrada.')
+          else:
+              print('Opção inválida. Selecione um número de turma válido.')
+
+        else:
+            print('Opção inválida.')
+
+
 
 
 
