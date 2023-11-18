@@ -27,6 +27,10 @@ elif usuario.upper() == 'LIDER': #caso seja lider, invocamos o metodo de inscri�
 
 
 elif usuario.upper() =='PROFESSOR': #caso seja professor  invocamos o metodo de exibir informações do professor
+  torneio2 = input("você deseja criar o torneio?")
+  if torneio2 == 'sim':
+    print(torneio)
+    torneio.run_tournament()
   exibirProfessor = Professor(None,None)
   exibirProfessor.exibirProfessor()
   editarturma = input("Vocde seja editar alguma turma: ")

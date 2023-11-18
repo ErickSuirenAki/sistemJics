@@ -1,0 +1,8 @@
+Chaves do Torneio:
+[['1 quimica b', '2 info vespertino', '2 edifica vespertino', '1 info b'], ['2 info matutino', '3 edifica vespertino', '1 eletro a', '2 edifica matutino'], ['1 quimica a', '2 eletro vespertino', '3 eletro matutino', '1 eletro b'], ['2 quimica vespertino', '1 edifica a', '3 info vespertino', '1 edifica b'], ['1 info a', '2 eletro matutino', '3 edifica matutino', '3 quimica matutino'], ['2 quimica matutino', '3 quimica vespertino', '3 eletro vespertino', '3 info matutino']]
+
+Vencedores da Primeira Rodada:
+['2 info vespertino', '2 edifica matutino', '1 quimica a', '1 edifica b', '3 quimica matutino', '3 quimica vespertino']
+
+Vencedor do Torneio:
+3 quimica vespertino
