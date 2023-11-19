@@ -4,37 +4,34 @@
 #import da classe
 
 from classe import*
- 
-#invocação do metodo login da classe Pessoa
 login = Pessoa(None, None)
 usuario = login.login()
 
-#na classe tem um RETURN que nos retorna o usuário
 try:
-  if usuario.upper() == 'ALUNO': #caso seja aluno, invocamos o metodo de inscrição do aluno
-    
-    #invocação do metodo inscrição da classe Aluno
+  if usuario.upper() == 'ALUNO': 
     inscrição = Aluno(None,None, None, None)
     inscrição.inscricao()
 
-  elif usuario.upper() == 'LIDER': #caso seja lider, invocamos o metodo de inscrição do aluno e o metodo de exibir informações do lider
-    #invocação do metodo inscrição da classe Aluno e do metodo de exibir informações da Classe
+  elif usuario.upper() == 'LIDER': 
     lider = Lider(None, None, None, None)
     lider.exibirInfoLider()
 
-
-  elif usuario.upper() =='PROFESSOR': #caso seja professor  invocamos o metodo de exibir informações do professor
-    torneio2 = input("você deseja criar o torneio?")
-    if torneio2 == 'sim':
-      print(torneio)
-      torneio.run_tournament()
+  elif usuario.upper() =='PROFESSOR':
     exibirProfessor = Professor(None,None)
-    exibirProfessor.exibirProfessor()
-    editarturma = input("Vocde seja editar alguma turma: ")
-    if editarturma == 'sim':
-      escolha = input("Voce deseja adcionar algum aluno?")
+    logar = Professor(None, None)
+    logar.logarProf()
+    decisao_professor = input("Você deseja ver o andamento das turmas [1], editar as turmas [2], ou gerar boletim[3]")
+    if decisao_professor == '1':
+      exibirProfessor.exibirProfessor()
+    elif decisao_professor == '2':
+      escolha = input("Voce deseja adicionar algum aluno?")
       if escolha == "sim":
         exibirProfessor.adicionar_aluno()
+    elif decisao_professor == '3':
+      print(torneio)
+      torneio.comecar_torneio()
+    
+    
 
   else:
     raise ValueError('Você não escolheu uma das alternativas existentes, renicie o programa.')

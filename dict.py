@@ -222,7 +222,6 @@ quim_3_V = {
 
 ListaLider = {'2023106060091': 'Ana Luisa Esteves de Oliveira'}
 
-
 turma_dict = {
                 ("feminino", "2 info matutino"): ("lista_feminino.txt", "info_2_M", "participantes_feminino.txt"),
                 ("feminino", "2 info vespertino"): ("listafeminino_info_2_vesp.txt", "info_2_V", "participantes_feminino_2_info_vesp.txt"),

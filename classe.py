@@ -99,6 +99,13 @@ class Professor(Pessoa):
     def __init__(self, nome, matricula):
         super().__init__(nome, matricula)
 
+        self.nome = None
+        self.matricula = None
+
+    def logarProf(self):
+        self.nome = input('Digite seu nome:')
+        self.matricula = input('Digite sua matricula:')
+      
     def adicionar_aluno(self):
         try:
             listaParticipantes = []
@@ -243,9 +250,6 @@ class Torneio:
         self.chaves_do_torneio = self.criar_chaves()
         self.vencedores_primeira_rodada = []
 
-
-    
-
     def criar_chaves(self):
         random.shuffle(self.teams)
         return [self.teams[i:i + 4] for i in range(0, len(self.teams), 4)]
@@ -265,7 +269,7 @@ class Torneio:
             self.vencedores_primeira_rodada = self.simular_jogos(self.vencedores_primeira_rodada)
         return self.vencedores_primeira_rodada[0]
 
-    def run_tournament(self):
+    def comecar_torneio(self):
         print("Chaves do Torneio:")
         
 
@@ -273,9 +277,9 @@ class Torneio:
         print("\nVencedores da Primeira Rodada:")
         print(self.vencedores_primeira_rodada)
 
-        final_winner = self.criar_chave_de_um_jogo()
+        vencedor = self.criar_chave_de_um_jogo()
         print("\nVencedor do Torneio:")
-        print(final_winner)
+        print(vencedor)
 
 torneio = Torneio(teams)
 
