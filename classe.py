@@ -431,17 +431,17 @@ class Professor(Pessoa):
 class Torneio:
     def __init__(self, teams):
         self.teams = teams
-        self.tournament_bracket = self.create_tournament_bracket()
-        self.winners_first_round = []
+        self.chaves_do_torneio = self.criar_chaves()
+        self.vencedores_primeira_rodada = []
 
 
     
 
-    def create_tournament_bracket(self):
+    def criar_chaves(self):
         random.shuffle(self.teams)
         return [self.teams[i:i + 4] for i in range(0, len(self.teams), 4)]
 
-    def simulate_matches(self, brackets):
+    def simular_jogos(self, brackets):
         winners = []
         for i, match in enumerate(brackets):
             print(f"\nChave {i + 1}: {match}")
@@ -450,21 +450,21 @@ class Torneio:
             print(f"Jogo {i + 1}: Vencedor - {winner}")
         return winners
 
-    def create_single_elimination_bracket(self):
-        while len(self.winners_first_round) > 1:
-            self.winners_first_round = [self.winners_first_round[i:i + 2] for i in range(0, len(self.winners_first_round), 2)]
-            self.winners_first_round = self.simulate_matches(self.winners_first_round)
-        return self.winners_first_round[0]
+    def criar_chave_de_um_jogo(self):
+        while len(self.vencedores_primeira_rodada) > 1:
+            self.vencedores_primeira_rodada = [self.vencedores_primeira_rodada[i:i + 2] for i in range(0, len(self.vencedores_primeira_rodada), 2)]
+            self.vencedores_primeira_rodada = self.simular_jogos(self.vencedores_primeira_rodada)
+        return self.vencedores_primeira_rodada[0]
 
     def run_tournament(self):
         print("Chaves do Torneio:")
         
 
-        self.winners_first_round = self.simulate_matches(self.tournament_bracket)
+        self.vencedores_primeira_rodada = self.simular_jogos(self.chaves_do_torneio)
         print("\nVencedores da Primeira Rodada:")
-        print(self.winners_first_round)
+        print(self.vencedores_primeira_rodada)
 
-        final_winner = self.create_single_elimination_bracket()
+        final_winner = self.criar_chave_de_um_jogo()
         print("\nVencedor do Torneio:")
         print(final_winner)
 
