@@ -8,8 +8,13 @@ class Pessoa:
 
   def login(self):
       
-            usuario = input('Você é aluno, líder ou professor?')
-            return usuario
+    usuario = input('''
+\033[31m Escolha a opção abaixo correspondente:
+-Aluno
+-Líder
+-Professor\033[m
+====>>''')
+    return usuario
        
             
       
