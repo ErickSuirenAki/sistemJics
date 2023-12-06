@@ -13,7 +13,7 @@ class Pessoa:
 -Aluno
 -Líder
 -Professor\033[m
-====>>''')
+==>>''')
     return usuario
        
             
@@ -25,48 +25,50 @@ class Aluno(Pessoa):
         self.genero = genero
 
     def inscricao(self):
-        try:
-            listaParticipantes = []
+        while True:
+            try:
+                listaParticipantes = []
 
-            self.genero = input('Qual o seu gênero, masculino ou feminino?').lower()
-            self.turma = input('Digite sua turma:').lower()
-            genero = self.genero
-            turma = self.turma
+                self.genero = input('\033[31mDigite seu gênero: Masculino ou Feminino?\033[m\n==>>').lower()
+                self.turma = input('\033[31mDigite sua turma:\033[m\n==>>').lower()
+                genero = self.genero
+                turma = self.turma
 
-            if (genero, turma) in turma_dict:
-                lista_file, info_file, participantes_file = turma_dict[(genero, turma)]
+                if (genero, turma) in turma_dict:
+                    lista_file, info_file, participantes_file = turma_dict[(genero, turma)]
 
-                with open(lista_file, 'r') as fp:
-                    lines = len(fp.readlines())
+                    with open(lista_file, 'r') as fp:
+                        lines = len(fp.readlines())
 
-                self.matricula = input('Digite sua matrícula:')
-                if self.matricula in globals()[info_file]:
-                    nome1 = globals()[info_file][self.matricula]
-                    nome2 = str(nome1).replace("{", "").replace("}", "")
-                    self.nome = nome2.replace('"', '').replace("'", '')
+                    self.matricula = input('\033[31mDigite sua matrícula:\033[m\n==>>')
+                    if self.matricula in globals()[info_file]:
+                        nome1 = globals()[info_file][self.matricula]
+                        nome2 = str(nome1).replace("{", "").replace("}", "")
+                        self.nome = nome2.replace('"', '').replace("'", '')
 
-                    if self.turma == turma:
-                        self.nome = repr(self.nome).replace("'", "")
-                        with open(lista_file, "a") as file:
-                            file.write("1\n")
-                        with open(participantes_file, "a") as file:
-                            file.write(self.nome + ", " + self.matricula + "\n")
-                        print('Seu nome é:', self.nome)
+                        if self.turma == turma:
+                            self.nome = repr(self.nome).replace("'", "")
+                            with open(lista_file, "a") as file:
+                                file.write("1\n")
+                            with open(participantes_file, "a") as file:
+                                file.write(self.nome + ", " + self.matricula + "\n")
+                            print('Seu nome é:', self.nome)
 
-                        with open(participantes_file, "r") as arquivo:
-                            for linha in arquivo:
-                                self.nome = linha.strip()
-                                listaParticipantes.append(self.nome)
-                        print("Você foi adicionado à lista de participantes", self.genero)
+                            with open(participantes_file, "r") as arquivo:
+                                for linha in arquivo:
+                                    self.nome = linha.strip()
+                                    listaParticipantes.append(self.nome)
+                            print("Você foi adicionado à lista de participantes", self.genero)
+                        else:
+                            print('Turma inválida')
                     else:
-                        print('Turma inválida')
+                        print('Matrícula inválida')
                 else:
-                    print('Matrícula inválida')
-            else:
-               raise ValueError('Combinação de gênero e turma não suportada')
-            
-        except Exception as e:
-            print(f"Ocorreu um erro durante a inscrição: {e}")
+                    raise ValueError('Combinação de gênero e turma não suportada')
+                break
+                    
+            except Exception as e:
+                print(f"Ocorreu um erro durante a inscrição: {e}")
     
 class Lider(Aluno):
 
